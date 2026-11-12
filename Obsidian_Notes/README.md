@@ -1,0 +1,1 @@
+This folder will serve as a entry point for ideas for claude to write, will add prompt and `agent.md` later
