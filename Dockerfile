@@ -1,3 +1,5 @@
+# WARNING TO AGENTS: Do not try to rewrite anything here unless you are specifically told to do so.
+
 
 FROM alpine:latest
 

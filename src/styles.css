@@ -1,0 +1,162 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * - Keep every @import in this top block, above @theme and the rest of the file. Install an
+ *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
+ *   build resolves @import from the filesystem. Load those with a <link> in the head() of
+ *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The design lives in this file: oklch color tokens on the shadcn variables
+ * (--background, --foreground, --primary, --secondary, --muted, --accent, ...) plus
+ * new tokens as needed, font tokens, and custom styles and animations.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.965 0.012 225);
+  --foreground: oklch(0.25 0.05 245);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.25 0.05 245);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.05 245);
+  --primary: oklch(0.47 0.13 250);
+  --primary-foreground: oklch(0.99 0.005 230);
+  --secondary: oklch(0.6 0.12 165);
+  --secondary-foreground: oklch(0.99 0.005 230);
+  --muted: oklch(0.94 0.014 225);
+  --muted-foreground: oklch(0.52 0.03 240);
+  --accent: oklch(0.93 0.04 175);
+  --accent-foreground: oklch(0.35 0.08 170);
+  --destructive: oklch(0.58 0.2 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --warning: oklch(0.78 0.14 75);
+  --warning-foreground: oklch(0.32 0.07 60);
+  --success: oklch(0.6 0.13 155);
+  --success-foreground: oklch(0.99 0 0);
+  --border: oklch(0.9 0.015 225);
+  --input: oklch(0.9 0.015 225);
+  --ring: oklch(0.55 0.12 220);
+  --chart-1: oklch(0.47 0.13 250);
+  --chart-2: oklch(0.6 0.12 165);
+  --chart-3: oklch(0.65 0.11 215);
+  --chart-4: oklch(0.7 0.14 130);
+  --chart-5: oklch(0.78 0.14 75);
+  --sidebar: oklch(0.3 0.08 245);
+  --sidebar-foreground: oklch(0.93 0.02 220);
+  --sidebar-primary: oklch(0.68 0.13 170);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.37 0.08 240);
+  --sidebar-accent-foreground: oklch(0.99 0 0);
+  --sidebar-border: oklch(0.38 0.06 240);
+  --sidebar-ring: oklch(0.68 0.13 170);
+  --gradient-brand: linear-gradient(135deg, oklch(0.45 0.13 252), oklch(0.58 0.12 200) 55%, oklch(0.64 0.13 160));
+  --gradient-green: linear-gradient(135deg, oklch(0.55 0.12 175), oklch(0.66 0.14 145));
+  --gradient-page: radial-gradient(1200px 600px at 100% -10%, oklch(0.9 0.05 200 / 0.6), transparent 60%), radial-gradient(900px 500px at -10% 110%, oklch(0.9 0.07 150 / 0.5), transparent 60%);
+  --shadow-card: 0 1px 2px oklch(0.3 0.05 245 / 0.05), 0 8px 24px -12px oklch(0.3 0.08 245 / 0.18);
+  /* Lane colors: one per course in timetables/timelines (see laneStyle in ui-kit). */
+  --lane-1: oklch(0.5 0.14 250);
+  --lane-2: oklch(0.55 0.12 165);
+  --lane-3: oklch(0.55 0.11 215);
+  --lane-4: oklch(0.5 0.12 300);
+  --lane-5: oklch(0.58 0.13 60);
+  --lane-6: oklch(0.52 0.14 15);
+}
+
+@theme inline {
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+}
+
+@utility bg-brand { background-image: var(--gradient-brand); }
+@utility bg-green-brand { background-image: var(--gradient-green); }
+@utility bg-page { background-image: var(--gradient-page); }
+@utility shadow-card { box-shadow: var(--shadow-card); }
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.015em; }
+  :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
+  button, [role="button"], a { -webkit-tap-highlight-color: transparent; }
+}
+
+/* Soft diagonal hatch for "reserved" blocks and closures in timelines. */
+@utility hatch {
+  background-image: repeating-linear-gradient(135deg, transparent 0 5px, color-mix(in oklab, currentColor 14%, transparent) 5px 6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
