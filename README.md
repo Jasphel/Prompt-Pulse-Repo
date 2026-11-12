@@ -6,5 +6,5 @@ Team: J4V4
 Members:
 - Ang, Chellzie Mae
 - Mancawan, Claire Jasper
-- Rasca, Kristofer
+- Racsa, Kristofer
 - Solon, Shekinah Myrrh
